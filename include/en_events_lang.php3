@@ -22,7 +22,7 @@ http://www.apc.org/
 
 # config file identifier
 # must correspond with fileneme in $ActionAppConfig[xxx][file]!!
-define("CONFIG_FILE", "en_press_lang.php3");
+define("CONFIG_FILE", "en_events_lang.php3");
 
 define("IMG_UPLOAD_MAX_SIZE", "400000");    // max size of file in picture uploading
 define("IMG_UPLOAD_URL", "http://web.ecn.cz/aauser/img_upload/");
@@ -33,24 +33,24 @@ define("EDIT_ITEM_COUNT", 20);                  // number of items in editor win
 # Default values for database fields
 define("DEFAULT_EDIT_FIELDS",    // shown fields (headline if allways shown)
  "y".  // abstract
- "n".  // html_formatted
+ "y".  // html_formatted
  "y".  // full_text
- "y".  // highlight
- "n".  // hl_href
- "n".  // link_only
+ "n".  // highlight
+ "y".  // hl_href
+ "y".  // link_only
  "y".  // place
- "n".  // source
+ "y".  // source
  "n".  // source_href
  "n".  // status_code
  "n".  // language_code
  "n".  // cp_code
- "n".  // category_id
+ "y".  // category_id
  "n".  // img_src
  "n".  // img_width
  "n".  // img_height
  "y".  // posted_by
- "y".  // e_posted_by
- "y".  // publish_date
+ "n".  // e_posted_by
+ "n".  // publish_date
  "y".  // expiry_date
  "n".  // edit_note
  "n".  // redirect
@@ -63,9 +63,9 @@ define("DEFAULT_EDIT_FIELDS",    // shown fields (headline if allways shown)
  "n".  // reserved
  "n"); // reserved
 define("DEFAULT_NEEDED_FIELDS", 
- "n".  // abstract
+ "y".  // abstract
  "n".  // html_formatted
- "y".  // full_text
+ "n".  // full_text
  "n".  // highlight
  "n".  // hl_href
  "n".  // link_only
@@ -96,7 +96,7 @@ define("DEFAULT_NEEDED_FIELDS",
 
 define("DEFAULT_SEARCH_SHOW", 
  "n".  // slice
- "n".  // category
+ "y".  // category
  "y".  // author
  "n".  // language
  "y".  // from
@@ -104,11 +104,11 @@ define("DEFAULT_SEARCH_SHOW",
  "y".  // headline
  "y".  // abstract
  "y".  // full_text
- "n".  // edit_note
- "y".  // reserved
- "y".  // reserved
- "y".  // reserved
- "y"); // reserved
+ "y".  // edit_note
+ "y".  // reserve
+ "y".  // reserve
+ "y".  // reserve
+ "y"); // reserve
 define("DEFAULT_SEARCH_DEFAULT", 
  "y".  // headline
  "y".  // abstract
@@ -146,9 +146,9 @@ define("HTML_PAGE_BEGIN",
   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">');
     
 # Input form field names
-define("L_HEADLINE", "Title");
+define("L_HEADLINE", "Headline");
 define("L_ABSTRACT", "Summary");
-define("L_FULL_TEXT", "Press release");
+define("L_FULL_TEXT", "News");
 define("L_FT_FORMATTING", "Formatting");
 define("L_FT_FORMATTING_HTML", "HTML code");
 define("L_FT_FORMATTING_PLAIN", "Plain text"); 
@@ -158,16 +158,16 @@ define("L_E_POSTED_BY","Author's e-mail");
 define("L_PUBLISH_DATE", "Publish date");
 define("L_EXPIRY_DATE", "Expiry date");
 define("L_CATEGORY", "Category");
-define("L_STATUS_CODE", "Release status");
+define("L_STATUS_CODE", "News status");
 define("L_LANGUAGE_CODE", "Language");
 define("L_CP_CODE", "Encoding");
-define("L_LINK_ONLY", "External press release");
-define("L_HL_HREF", "External release URL");
+define("L_LINK_ONLY", "External news");
+define("L_HL_HREF", "External news URL");
 define("L_HTML_FORMATTED", "HTML formatted");
 define("L_HIGHLIGHT", "Highlight");
-define("L_IMG_SRC","Picture URL"); 
-define("L_IMG_WIDTH","Picture width"); 
-define("L_IMG_HEIGHT","Picture height");
+define("L_IMG_SRC","Image URL"); 
+define("L_IMG_WIDTH","Image width"); 
+define("L_IMG_HEIGHT","Image height");
 define("L_PLACE","Location");
 define("L_SOURCE","Source ");
 define("L_SOURCE_HREF","Source URL");
@@ -176,60 +176,61 @@ define("L_CREATED_BY","Written by");
 define("L_LASTEDIT","Last edited by");
 define("L_AT","at");   
 define("L_EDIT_NOTE","Editor's note"); 
-define("L_IMG_UPLOAD","Picture upload"); 
+define("L_IMG_UPLOAD","Image upload"); 
 
 # aa toolkit specific labels
-define("L_HLP_HEADLINE",'alias for Title');
+define("L_HLP_HEADLINE",'alias for Item Headline');
 define("L_HLP_CATEGORY",'alias for Category Name');
-define("L_HLP_HDLN_URL",'alias for Press release URL<br>(substituted by External release URL(if External press release is checked) or link to fulltext of press release)<div class=example><em>Example: </em>&lt;a href=_#HDLN_URL&gt;_#HEADLINE&lt;/a&gt;</div>');
+define("L_HLP_HDLN_URL",'alias for News URL<br>(substituted by External news link URL(if External news is checked) or link to Fulltext)<div class=example><em>Example: </em>&lt;a href=_#HDLN_URL&gt;_#HEADLINE&lt;/a&gt;</div>');
 define("L_HLP_POSTDATE",'alias for Post Date');
 define("L_HLP_PUB_DATE",'alias for Publish Date');
-define("L_HLP_EXP_DATE",'alias for Expiry date');
-define("L_HLP_ABSTRACT",'alias for Summary<br>(if there is no summary in database, first Grab_length characters from Press release are used)');
-define("L_HLP_FULLTEXT",'alias for Press release<br>(HTML tags are striped or not depending on HTML formated item setting)');
-define("L_HLP_IMAGESRC",'alias for Picture URL<br>(if there is no image url defined in database, default url is used instead (see NO_PICTURE_URL constant in en_*_lang.php3 file))<div class=example><em>Example: </em>&lt;img src="_#IMAGESRC"&gt;</div>');
+define("L_HLP_EXP_DATE",'alias for Date of Expiration');
+define("L_HLP_ABSTRACT",'alias for Summary<br>(if there is no abstract in database, first Grab_length characters from Fulltext are used)');
+define("L_HLP_FULLTEXT",'alias for Fulltext<br>(HTML tags are striped or not depending on HTML formated item setting)');
+define("L_HLP_IMAGESRC",'alias for Image URL<br>(if there is no image url defined in database, default url is used instead (see NO_PICTURE_URL constant in en_*_lang.php3 file))<div class=example><em>Example: </em>&lt;img src="_#IMAGESRC"&gt;</div>');
 define("L_HLP_SOURCE",'alias for Source Name<br>(see _#LINK_SRC for text source link)');
 define("L_HLP_SRC_URL",'alias for Source URL<br>(if there is no source url defined in database, default source url is displayed (see NO_SOURCE_URL constant in en_*_lang.php3 file))<br>Use _#LINK_SRC for text source link.<div class=example><em>Example: </em>&lt;a href"_#SRC_URL#"&gt;&lt;img src="source.gif"&gt;&lt;/a&gt;</div>');
 define("L_HLP_LINK_SRC",'alias for Source Name with link.<br>(substituted by &lt;a href="_#SRC_URL#"&gt;_#SOURCE##&lt;/a&gt; if Source URL defined, otherwise _#SOURCE## only)');
-define("L_HLP_PLACE",'alias for Place');
+define("L_HLP_PLACE",'alias for Locality');
 define("L_HLP_POSTEDBY",'alias for Author');
 define("L_HLP_E_POSTED","alias for Author's e-mail");
 define("L_HLP_CREATED",'alias for Written By');
-define("L_HLP_EDITEDBY",'alias for Edited By');
+define("L_HLP_EDITEDBY",'alias for Last edited By');
 define("L_HLP_LASTEDIT",'alias for Date of last editation');
 define("L_HLP_EDITNOTE","alias for Editor's note");
-define("L_HLP_IMGWIDTH",'alias for Picture Width<br>(if no width defined, program tries to remove <em>width=</em> atribute from format string<div class=example><em>Example: </em>&lt;img src="_#IMAGESRC" width=_#IMGWIDTH height=_#IMG_HGHT&gt;</div>');
-define("L_HLP_IMG_HGHT",'alias for Picture Height<br>(if no height defined, program tries to remove <em>height=</em> atribute from format string<div class=example><em>Example: </em>&lt;img src="_#IMAGESRC" width=_#IMGWIDTH height=_#IMG_HGHT&gt;</div>');
-define("L_HLP_ITEM_ID",'alias for Press release ID<br>(can be used as parameter sh_itm= given to slice.php3 (or to any .shtml file, which this script includes))');
+define("L_HLP_IMGWIDTH",'alias for Image Width<br>(if no width defined, program tries to remove <em>width=</em> atribute from format string<div class=example><em>Example: </em>&lt;img src="_#IMAGESRC" width=_#IMGWIDTH height=_#IMG_HGHT&gt;</div>');
+define("L_HLP_IMG_HGHT",'alias for Image Height<br>(if no height defined, program tries to remove <em>height=</em> atribute from format string<div class=example><em>Example: </em>&lt;img src="_#IMAGESRC" width=_#IMGWIDTH height=_#IMG_HGHT&gt;</div>');
+define("L_HLP_ITEM_ID",'alias for News ID<br>(can be used as parameter sh_itm= given to slice.php3 (or to any .shtml file, which this script includes))');
 define("L_HLP_CATEGORY_ID",'alias for Category ID<br>(can be used with HTML tag &lt;A NAME="_#CATEG_ID"&gt; in Category headline field)');
 
-define("L_CANT_UPLOAD","Can't upload picture"); 
+define("L_CANT_UPLOAD","Can't upload Image"); 
 define("L_GRAB_LEN", "Fulltext into abstract grab length [characters]");
-define("L_SLICE_DEFAULTS", "Default values for new press releases");
+define("L_SLICE_DEFAULTS", "Default values for new news");
 define("L_D_EXPIRY_LIMIT", "Expire limit [days]");
-define("L_MSG_PAGE", "APC Toolkit press release publisher message");   // title of message page
-define("L_EDITOR_TITLE", "Editor window - press release management");
+define("L_MSG_PAGE", "Toolkit news message");   // title of message page
+define("L_EDITOR_TITLE", "Editor window - news management");
 define("L_FULLTEXT_FORMAT", "Fulltext HTML code");
-define("L_A_FULLTEXT_TIT", "Slice Administration - Press Release Fulltext Format");
-define("L_FULLTEXT_HDR", "HTML code for fulltext view of releases");
-define("L_COMPACT_HDR", "HTML code for compact view of releases");
-define("L_ITEM_HDR", "Press Release Data");
-define("L_A_ITEM_ADD", "Add Press Release");
-define("L_A_ITEM_EDT", "Edit Press Release");
-define("L_IMP_EXPORT", "Enable export of releases to slice:");
-define("L_ADD_NEW_ITEM", "New Press release");
-define("L_EDIT_ITEMS", "Edit Press Release");
+define("L_A_FULLTEXT_TIT", "Slice Administration - News Fulltext Format");
+define("L_FULLTEXT_HDR", "HTML code for fulltext view of news");
+define("L_COMPACT_HDR", "HTML code for compact view of news");
+define("L_ITEM_HDR", "News Data");
+define("L_A_ITEM_ADD", "Add News");
+define("L_A_ITEM_EDT", "Edit News");
+define("L_IMP_EXPORT", "Enable export of news to slice:");
+define("L_ADD_NEW_ITEM", "Add Article");
+define("L_EDIT_ITEMS", "Edit News");
 define("L_DELETE_TRASH", "Empty trash");
 define("L_VIEW_FULLTEXT", "Preview");
 define("L_FULLTEXT", "Fulltext");
 define("L_HIGHLIGHTED", "Highlighted");
 define("L_NO_HIGHLIGHTED", "No highlighted");
-define("L_A_FIELDS_EDT", "Slice Administration - Press Release Fields Settings");
-define("L_FIELDS_HDR", "Press release fields");
-define("L_NO_PS_EDIT_ITEMS", "You have not permissions to edit press releases in this slice");
-define("L_NO_DELETE_ITEMS", "You have not permissions to remove press release");
-define("L_NO_PS_MOVE_ITEMS", "You have not permissions to move press release");
+define("L_A_FIELDS_EDT", "Slice Administration - News Fields Settings");
+define("L_FIELDS_HDR", "News fields");
+define("L_NO_PS_EDIT_ITEMS", "You have not permissions to edit news in this slice");
+define("L_NO_DELETE_ITEMS", "You have not permissions to remove news");
+define("L_NO_PS_MOVE_ITEMS", "You have not permissions to move news");
 define("L_FULLTEXT_OK", "Fulltext format update successful");
+define("L_NO_ITEM", "No news matching your query.");
 
 # aa toolkit common labels
 # can be the same for all toolkit aplications
@@ -364,7 +365,7 @@ define("L_NO_PS_FIELDS", "You have not permissions to change fields settings");
 define("L_NO_PS_SEARCH", "You have not permissions to change search settings");
 define("L_PS_NO_NEW_USER", "You have not permissions to create new user");
 define("L_BAD_RETYPED_PWD", "Retyped password is not the same as the first one");
-define("L_ERR_USER_ADD", "It is impossible to add user to permission system - LDAP error");
+define("L_ERR_USER_ADD", "It is impossible to add user to permission system");
 define("L_NEWUSER_OK", "User successfully added to permission system");
 define("L_COMPACT_OK", "Design of compact design successfully changed");
 define("L_NEEDED", "Must be filled");
@@ -372,8 +373,8 @@ define("L_ALL", " - all - ");
 define("L_CAT_LIST", "Slice Categories");
 define("L_CAT_SELECT", "This Slice Categories");
 define("L_NEW_CATEG", "Enter the name for the new category");
-define("L_NEW_SLICE", "New Slice");
-define("L_SLICE_NEW", L_NEW_SLICE);
+define("L_NEW_SLICE", "Add Slice");
+define("L_SLICE_NEW", "New Slice");
 define("L_RENAME_CATEG", "Enter the new name for this category");
 define("L_ASSIGN", "Assign");
 define("L_CATBINDS_OK", "Category update successful");
@@ -385,17 +386,18 @@ define("L_NO_CATEGORY", "No category defined");
 define("L_NO_IMPORTED_SLICE", "There are no imported slices");
 define("L_NO_USERS", "No user (group) found");
 
-define("L_TOO_MUCH_USERS", "Too much users or group found.");
+define("L_TOO_MUCH_USERS", "Too much users or groups found.");
 define("L_MORE_SPECIFIC", "Try to be more specific.");
 define("L_REMOVE", "Remove");
 define("L_ID", "Id");
 define("L_TYPE", "Type");
 define("L_SETTINGS", "Admin");
-define("L_LOGO", "APC toolkit logo");
+define("L_SETTINGS", "Admin");
+define("L_LOGO", "APC toolkit");
 define("L_USER_MANAGEMENT", "Users");
 define("L_ITEMS", "Item management page");
 define("L_NEW_SLICE_HEAD", "New slice");
-define("L_ERR_USER_CHANGE", "Can't change user - LDAP Error");
+define("L_ERR_USER_CHANGE", "Can't change user");
 define("L_PUBLISHED", "Published");
 define("L_EXPIRED", "Expired");
 define("L_NOT_PUBLISHED", "Not published, yet");
@@ -408,10 +410,9 @@ define("NO_PICTURE_URL", "http://web.ecn.cz/aauser/images/no_pict.gif");  // ima
 define("NO_SOURCE_URL", "javascript: window.alert('No source url specified')"); 
 define("NO_OUTER_LINK_URL", "javascript: window.alert('No outer url specified')");
 
-
-# editor interface constants
+# editors interface constants
 define("L_PUBLISHED_HEAD", "Pub");
-define("L_HIGHLIGHTED_HEAD", "!");
+define("L_HIGHLIGHTED_HEAD", "&nbsp;!&nbsp;");
 define("L_FEEDED_HEAD", "Fed");
 define("L_FEEDED_INTO_APP", "Fed into Approved bin");
 define("L_FEEDED_INTO_HOLD", "Fed into Holding bin");
@@ -424,7 +425,6 @@ define("L_SELECT_ALL", "Select all");
 define("L_UNSELECT_ALL", "Unselect all");
 define("L_SELECT_VISIBLE", "Select visible");
 define("L_UNSELECT_VISIBLE", "Unselect visible");
-
 
 define("L_D_LANGUAGE_CODE", L_LANGUAGE_CODE);
 define("L_D_CP_CODE", L_CP_CODE);
@@ -465,7 +465,8 @@ define("L_A_SLICE_TIT", L_SLICE_ADM);
 define("L_SLICE_SET", L_SLICE);
 define("L_FULLTEXT_REMOVE", L_COMPACT_REMOVE);
 
-//new_constants
+//define("", "");
+//prepared for new constants
 define("L_FEEDED_FROM", "Fed from");
 define("DEFAULT_SLICE_CONFIG", "<wddxPacket version='0.9'><header/><data><struct><var name='admin_fields'><struct><var name='chbox'><struct><var name='width'><number>24</number></var></struct></var><var name='post_date'><struct><var name='width'><number>70</number></var></struct></var><var name='headline'><struct><var name='width'><number>224</number></var></struct></var><var name='catname'><struct><var name='width'><number>70</number></var></struct></var><var name='published'><struct><var name='width'><number>24</number></var></struct></var><var name='highlight'><struct><var name='width'><number>24</number></var></struct></var><var name='feed'><struct><var name='width'><number>24</number></var></struct></var></struct></var></struct></data></wddxPacket>");
 define("L_FEED", "Export");
@@ -501,6 +502,7 @@ define("L_ARTICLE_MANAGER", "Article Manager");
 define("L_SWITCH_TO", "Switch to slice");
 define("L_ADMIN", "Admin");
 
+//new_constants
 define("L_NO_PS_NEW_USER", "No permission to create new user");
 define("L_ALL_GROUPS", "All Groups");
 define("L_USERS_GROUPS", "User's Groups");
@@ -526,12 +528,7 @@ define("L_GROUPS_USERS", "Group's Users");
 define("L_POST", "Post");
 define("L_POST_PREV", "Post & Preview");
 define("L_OK", "OK");
-
-define("L_FEED", "Export");
-define("L_FEEDTO_TITLE", "Export Item to Selected Slice");
-define("L_FEED_TO", "Export selected items to selected slice");
-define("L_NO_PERMISSION_TO_FEED", "No permission");
-
+define("L_FEEDED_FROM", "Fed from");
 define("L_ACTIVE_BIN_EXPIRED", "Approved - Expired");
 define("L_ACTIVE_BIN_PENDING", "Approved - Pending");
 define("L_ACTIVE_BIN_EXPIRED_MENU", "... expired");
@@ -573,73 +570,70 @@ define("L_HLP_LOC_COUNTRY", "Alias for Location Country");
 define("L_HLP_START_DATE", "Alias for Start Date");
 define("L_HLP_END_DATE", "Alias for End Date");
 
-//----------------------------
+// not appended to other lang files
 //define("", "");
-//prepared for new constants
+
 
 $l_month = array( 1 => 'January', 'February', 'March', 'April', 'May', 'June', 
 		'July', 'August', 'September', 'October', 'November', 'December');
 
 /*
 $Log$
-Revision 1.15  2000/10/10 18:28:00  honzam
+Revision 1.1  2000/10/10 18:28:00  honzam
 Support for Web.net's extended item table
 
-Revision 1.14  2000/08/17 15:17:55  honzam
+Revision 1.12  2000/08/17 15:17:55  honzam
 new possibility to redirect item displaying (for database changes see CHANGES)
 
-Revision 1.13  2000/08/15 08:58:31  kzajicek
+Revision 1.11  2000/08/15 08:58:31  kzajicek
 Added missing L_HLP_CATEGORY_ID
 
-Revision 1.12  2000/08/15 08:43:41  kzajicek
+Revision 1.10  2000/08/15 08:43:41  kzajicek
 Fixed spelling error in constant name
 
-Revision 1.11  2000/08/03 15:19:57  kzajicek
-Language changes
-
-Revision 1.10  2000/08/03 12:49:22  kzajicek
+Revision 1.9  2000/08/03 12:49:22  kzajicek
 English editing
 
-Revision 1.9  2000/08/03 12:34:27  honzam
+Revision 1.8  2000/08/03 12:34:27  honzam
 Default values for new slice defined.
 
-Revision 1.8  2000/07/27 18:17:21  kzajicek
+Revision 1.7  2000/07/27 18:17:21  kzajicek
 Added superadmin settings in User/Group management
 
-Revision 1.7  2000/07/27 13:23:58  kzajicek
+Revision 1.6  2000/07/27 13:23:58  kzajicek
 Language correction
 
-Revision 1.6  2000/07/17 13:40:11  kzajicek
+Revision 1.5  2000/07/17 13:40:11  kzajicek
 Alert box when no input category selected
 
-Revision 1.5  2000/07/17 12:29:56  kzajicek
+Revision 1.4  2000/07/17 12:29:56  kzajicek
 Language changes
 
-Revision 1.4  2000/07/12 11:06:26  kzajicek
+Revision 1.3  2000/07/12 11:06:26  kzajicek
 names of image upload variables were a bit confusing
 
-Revision 1.3  2000/07/07 21:40:36  honzam
-Better words
+Revision 1.2  2000/07/03 15:00:14  honzam
+Five table admin interface. 'New slice expiry date bug' fixed.
 
-Revision 1.1.1.1  2000/06/21 18:40:35  madebeer
+Revision 1.1.1.1  2000/06/21 18:40:33  madebeer
 reimport tree , 2nd try - code works, tricky to install
 
-Revision 1.1.1.1  2000/06/12 21:50:21  madebeer
+Revision 1.1.1.1  2000/06/12 21:50:19  madebeer
 Initial upload.  Code works, tricky to install. Copyright, GPL notice there.
 
-Revision 1.6  2000/06/12 19:58:35  madebeer
+Revision 1.12  2000/06/12 19:58:35  madebeer
 Added copyright (APC) notice to all .inc and .php3 files that have an $Id
 
-Revision 1.5  2000/06/09 15:14:11  honzama
+Revision 1.11  2000/06/09 15:14:11  honzama
 New configurable admin interface
 
-Revision 1.4  2000/04/24 16:50:34  honzama
+Revision 1.10  2000/04/24 16:50:34  honzama
 New usermanagement interface.
 
-Revision 1.3  2000/03/29 15:54:47  honzama
+Revision 1.9  2000/03/29 15:54:47  honzama
 Better Netscape Navigator javascript support, new direct feeding support, minor changes in texts and look.
 
-Revision 1.2  2000/03/22 09:38:39  madebeer
+Revision 1.8  2000/03/22 09:38:39  madebeer
 perm_mysql improvements
 Id and Log added to all .php3 and .inc files
 system for config-ecn.inc and config-igc.inc both called from
