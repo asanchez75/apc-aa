@@ -27,71 +27,65 @@ http://www.apc.org/
        $set_tview -- required, name of the table view
 */
 
-require "../../include/config.php3";
+require "uc_init_page.php3";
 require $GLOBALS[AA_INC_PATH]."constants.php3";
-require $GLOBALS[AA_INC_PATH]."locsess.php3";
 require $GLOBALS[AA_INC_PATH]."tabledit.php3";
 require $GLOBALS[AA_INC_PATH]."tv_common.php3";
 require $GLOBALS[AA_INC_PATH]."util.php3";
-require "tableviews.php3";
+require "uc_tableviews.php3";
 
-if ($cmd["modedit"]["update"]) 
-    ProcessFormData ("GetAlertsTableView", $val, $cmd);
-
-$directory_depth = "../";
-require "$directory_depth../include/init_page.php3";
-if (!$new_module)
-    require $MODULES[$g_modules[$slice_id]['type']]['menu'];   
+if ($go_to_collection_form) {
+    $db->query ("SELECT slice_url FROM alerts_collection AC
+                 INNER JOIN module ON AC.moduleid = module.id
+                 WHERE AC.id = $go_to_collection_form");
+    $db->next_record();
+    go_url ($GLOBALS[AA_BASE_URL]."post2shtml.php3?shtml_page=".$db->f("slice_url")."&uid=".$auth->auth ["uid"]);
+}
 
 // ----------------------------------------------------------------------------------------
+/*
+$user = AlertsUser ($alerts_session);
+if ($signout) go_url (AA_INSTAL_URL."modules/alerts/uc_index.php3?show_email=$email&lang=$lang&ss=$ss");
+if (!$user) go_url (AA_INSTAL_URL."modules/alerts/uc_index.php3?show_email=$email&Msg="._m("Your session has expired. Please login again."));
+*/
+require $GLOBALS["AA_INC_PATH"].get_mgettext_lang()."_news_lang.php3";
 
-set_collectionid();
-
-$sess->register("tview");
-if ($set_tview) $tview = $set_tview;
-
-$tableview = GetAlertsTableView($tview);
-
-if (!is_array ($tableview)) { MsgPage ($sess->url(self_base()."index.php3"), "Bad Table view ID: ".$tview); exit; }
-if (! $tableview["cond"] )  { MsgPage ($sess->url(self_base()."index.php3"), L_NO_PS_ADD, "standalone"); exit; }
+$tview = "au_edit";
+$tableview = GetAlertsUCTableView($tview);
 
 HtmlPageBegin();   // Print HTML start page tags (html begin, encoding, style sheet, but no title)
 
 echo '<LINK rel=StyleSheet href="'.$AA_INSTAL_PATH.'/tabledit.css" type="text/css"  title="TableEditCSS">';
 echo "<TITLE>".$tableview["title"]."</TITLE></HEAD>";
 
-// called before menu because of Item Manager
-ProcessFormData ("GetAlertsTableView", $val, $cmd);
-if (!$new_module)
-    showMenu ($aamenus, $tableview["mainmenu"], $tableview["submenu"]);
 echo "<TABLE width='100%'><TR valign=center><TD>";
 echo "<H1>" . $tableview["caption"] . "</H1>";
-if ($tableview["children"]) {
-    echo "</TD><TD>";
-    reset ($tableview["children"]);
-    while (list ($chviewid, $child) = each ($tableview["children"])) 
-        echo "<FONT class='tabtxt'><B><a href='#$chviewid'>$child[header]</a></B></FONT> ";
-}
 echo "</TD></TR></TABLE>";
 
 PrintArray($err);
 echo $Msg;
-$script = $sess->url("tabledit.php3");
+$script = $sess->url("uc_settings.php3");
 
-$tabledit = new tabledit ($tview, $script, $cmd, $tableview, $AA_INSTAL_PATH."images/", $sess, "GetAlertsTableView");
+$cmd[$tview]["edit"][$auth->auth["uid"]] = 1;
+ProcessFormData ("GetAlertsUCTableView", $val, $cmd);
+$tabledit = new tabledit ($tview, $script, $cmd, $tableview, $AA_INSTAL_PATH."images/", $sess, "GetAlertsUCTableView");
 $err = $tabledit->view ();
+
 if ($err) echo "<b>$err</b>";
 
-if (!$err && $tview == "acf") {
-    require "design.php3";
-    ShowCollectionAddOns();
-}
+echo '<FORM name="subscribe" action="'.$sess->url("uc_settings.php3").'" method="post"><h2>'
+    . _m("Subscribe to").'</h2>';
+    
+$db->query ("SELECT AC.id, name FROM alerts_collection AC
+             INNER JOIN module ON AC.moduleid = module.id
+             ORDER BY name");
+while ($db->next_record())
+    $collections[$db->f("id")] = $db->f("name");
 
-if (!$err && $tview == "email_edit") 
-    ShowEmailAliases();
+FrmSelectEasy ("go_to_collection_form", $collections);
+echo '&nbsp;&nbsp;<INPUT TYPE="submit" VALUE="'._m("Go").'">';
 
-if ($new_module)
-    echo "</BODY></HTML>";
-else HTMLPageEnd();
+echo "</FORM>";
+echo "</BODY></HTML>";
 page_close ();
 ?>
