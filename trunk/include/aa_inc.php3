@@ -19,13 +19,16 @@ http://www.apc.org/
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
+// AA Administration header
+
  if( $useOnLoad )
    echo '<body OnLoad="InitPage()" background="'. COLOR_BACKGROUND .'">';
   else
    echo '<body background="'. COLOR_BACKGROUND .'">';
 
-$settings_page = true;
+$usermng_page = true;
 require $GLOBALS[AA_INC_PATH] . "navbar.php3";
+$menu = "aaadmin";
 require $GLOBALS[AA_INC_PATH] . "leftbar.php3";
 
 ?>
