@@ -18,10 +18,9 @@ http://www.apc.org/
     along with this program (LICENSE); if not, write to the Free Software
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
-# expected $del - unpacked id of slice to delete
+# expected $del - unpacked id of module to delete
 
 require "../include/init_page.php3";
-require $GLOBALS[AA_INC_PATH] . "feeding.php3";
 require $GLOBALS[AA_INC_PATH] . "msgpage.php3";
 require $GLOBALS[AA_INC_PATH] . "modutils.php3";
 
@@ -29,13 +28,14 @@ require $GLOBALS[AA_INC_PATH] . "modutils.php3";
 if($cancel)
   go_url( $sess->url(self_base() . "index.php3"));
 
+
 if($del) {
   if(!IsSuperadmin()) {
     MsgPage($sess->url(self_base())."index.php3", L_NO_PS_DEL, "admin");
     exit;
   }
 } else {
-  MsgPage($sess->url(self_base())."index.php3", L_NO_SLICE, "admin");
+  MsgPage($sess->url(self_base())."index.php3", L_NO_MODULE, "admin");
   exit;
 }
 
@@ -49,53 +49,20 @@ ExitIfCantDelete( $del, $db );
 DeleteModule( $del, $db );
 
 # delete all module specific tables
-$SQL = "DELETE LOW_PRIORITY FROM slice WHERE id='$p_del'";
+$SQL = "DELETE LOW_PRIORITY FROM site WHERE id='$p_del'";
 $db->query($SQL);
 
-# delete fields
-$SQL = "DELETE LOW_PRIORITY FROM field WHERE slice_id='$p_del'";
+$SQL = "DELETE LOW_PRIORITY FROM site_spot WHERE site_id='$p_del'";
 $db->query($SQL);
 
-# delete items
-$db2  = new DB_AA;
-$SQL = "SELECT id FROM item WHERE slice_id='$p_del'";
-$db->query($SQL);
-while( $db->next_record() )
-  DeleteItem($db2, unpack_id($db->f(id))); # deletes from content, offline and
-                                           # relation tables
+# delete module from permission system
+DelPermObject($del, "slice");  # the word 'slice' is not mistake - do not change
 
-# delete items
-$SQL = "DELETE LOW_PRIORITY FROM item WHERE slice_id='$p_del'";
-$db->query($SQL);
-
-# delete feedmap
-$SQL = "DELETE LOW_PRIORITY FROM feedmap WHERE from_slice_id='$p_del'
-                                            OR to_slice_id='$p_del'";
-$db->query($SQL);
-
-# delete feedprms
-$SQL = "DELETE LOW_PRIORITY FROM feedperms WHERE from_id='$p_del'
-                                            OR to_id='$p_del'";
-$db->query($SQL);
-
-# delete email_notify
-$SQL = "DELETE LOW_PRIORITY FROM email_notify WHERE slice_id='$p_del'";
-$db->query($SQL);
-
-# delete slice from permission system -----------------------------------------
-DelPermObject($del, "slice");
-
-# optimize tables -------------------------------------------------------------
+# optimize tables
+# from time to time it is good to optimize tables - right time to do it)
 $db->query("OPTIMIZE TABLE module");
-$db->query("OPTIMIZE TABLE slice");
-$db->query("OPTIMIZE TABLE field");
-$db->query("OPTIMIZE TABLE content");
-$db->query("OPTIMIZE TABLE offline");
-$db->query("OPTIMIZE TABLE item");
-$db->query("OPTIMIZE TABLE feedmap");
-$db->query("OPTIMIZE TABLE feedperms");
-$db->query("OPTIMIZE TABLE email_notify");
-$db->query("OPTIMIZE TABLE relation");
+$db->query("OPTIMIZE TABLE site");
+$db->query("OPTIMIZE TABLE site_spot");
 
 page_close();                                // to save session variables
 go_url(con_url($sess->url(self_base() . "slicedel.php3"),
