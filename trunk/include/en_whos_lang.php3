@@ -22,7 +22,7 @@ http://www.apc.org/
 
 # config file identifier
 # must correspond with fileneme in $ActionAppConfig[xxx][file]!!
-define("CONFIG_FILE", "en_events_lang.php3");
+define("CONFIG_FILE", "en_whos_lang.php3");
 
 define("IMG_UPLOAD_MAX_SIZE", "400000");    // max size of file in picture uploading
 define("IMG_UPLOAD_URL", "http://web.ecn.cz/aauser/img_upload/");
@@ -146,15 +146,15 @@ define("HTML_PAGE_BEGIN",
   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">');
     
 # Input form field names
-define("L_HEADLINE", "Headline");
-define("L_ABSTRACT", "Short description");
-define("L_FULL_TEXT", "Full description");
-define("L_FT_FORMATTING", "Formatting");
+define("L_HEADLINE", "Contact Last Name");
+define("L_ABSTRACT", "Short Description/Bio");
+define("L_FULL_TEXT", "Long Description/Bio/Resume");
+define("L_FT_FORMATTING", "Sector");
 define("L_FT_FORMATTING_HTML", "HTML code");
 define("L_FT_FORMATTING_PLAIN", "Plain text"); 
 define("L_POSTDATE", "Post date");
-define("L_POSTED_BY", "Author");
-define("L_E_POSTED_BY","Author's e-mail"); 
+define("L_POSTED_BY", "Posted by");
+define("L_E_POSTED_BY","Posted by e-mail"); 
 define("L_PUBLISH_DATE", "Publish date");
 define("L_EXPIRY_DATE", "Expiry date");
 define("L_CATEGORY", "Category");
@@ -162,22 +162,21 @@ define("L_STATUS_CODE", "News status");
 define("L_LANGUAGE_CODE", "Language");
 define("L_CP_CODE", "Encoding");
 define("L_LINK_ONLY", "External news");
-define("L_HL_HREF", "Related URL");
+define("L_HL_HREF", "External news URL");
 define("L_HTML_FORMATTED", "HTML formatted");
 define("L_HIGHLIGHT", "Highlight");
 define("L_IMG_SRC","Image URL"); 
 define("L_IMG_WIDTH","Image width"); 
 define("L_IMG_HEIGHT","Image height");
 define("L_PLACE","Location");
-define("L_SOURCE","Org Name");
-define("L_SOURCE_HREF","Source URL");
+define("L_SOURCE","Organization Name");
+define("L_SOURCE_HREF","Organization/Contact URL");
 define("L_REDIRECT","Show on URL");
 define("L_CREATED_BY","Written by");
 define("L_LASTEDIT","Last edited by");
 define("L_AT","at");   
 define("L_EDIT_NOTE","Editor's note"); 
 define("L_IMG_UPLOAD","Image upload"); 
-
 define("L_SOURCE_DESC", "Org Description");
 define("L_SOURCE_ADDRESS", "Street Adress");
 define("L_SOURCE_CITY", "City");
@@ -220,7 +219,6 @@ define("L_HLP_IMGWIDTH",'alias for Image Width<br>(if no width defined, program 
 define("L_HLP_IMG_HGHT",'alias for Image Height<br>(if no height defined, program tries to remove <em>height=</em> atribute from format string<div class=example><em>Example: </em>&lt;img src="_#IMAGESRC" width=_#IMGWIDTH height=_#IMG_HGHT&gt;</div>');
 define("L_HLP_ITEM_ID",'alias for News ID<br>(can be used as parameter sh_itm= given to slice.php3 (or to any .shtml file, which this script includes))');
 define("L_HLP_CATEGORY_ID",'alias for Category ID<br>(can be used with HTML tag &lt;A NAME="_#CATEG_ID"&gt; in Category headline field)');
-
 define("L_HLP_SOURCE_DESC", "Alias for Org Description");
 define("L_HLP_SOURCE_ADDRESS", "Alias for Street Adress");
 define("L_HLP_SOURCE_CITY", "Alias for City");
@@ -570,7 +568,6 @@ define("L_ACTIVE_BIN_PENDING", "Approved - Pending");
 define("L_ACTIVE_BIN_EXPIRED_MENU", "... expired");
 define("L_ACTIVE_BIN_PENDING_MENU", "... pending");
 
-
 // not appended to other lang files
 //define("", "");
 
@@ -580,7 +577,7 @@ $l_month = array( 1 => 'January', 'February', 'March', 'April', 'May', 'June',
 
 /*
 $Log$
-Revision 1.2  2000/10/11 20:18:28  honzam
+Revision 1.1  2000/10/11 20:18:29  honzam
 Upadted database structure and language files for web.net's extended item table
 
 Revision 1.1  2000/10/10 18:28:00  honzam

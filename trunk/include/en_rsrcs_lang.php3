@@ -22,7 +22,7 @@ http://www.apc.org/
 
 # config file identifier
 # must correspond with fileneme in $ActionAppConfig[xxx][file]!!
-define("CONFIG_FILE", "en_events_lang.php3");
+define("CONFIG_FILE", "en_rsrcs_lang.php3");
 
 define("IMG_UPLOAD_MAX_SIZE", "400000");    // max size of file in picture uploading
 define("IMG_UPLOAD_URL", "http://web.ecn.cz/aauser/img_upload/");
@@ -146,30 +146,30 @@ define("HTML_PAGE_BEGIN",
   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">');
     
 # Input form field names
-define("L_HEADLINE", "Headline");
-define("L_ABSTRACT", "Short description");
-define("L_FULL_TEXT", "Full description");
-define("L_FT_FORMATTING", "Formatting");
+define("L_HEADLINE", "Title");
+define("L_ABSTRACT", "Description of resource");
+define("L_FULL_TEXT", "Full text of resource");
+define("L_FT_FORMATTING", "Sector");
 define("L_FT_FORMATTING_HTML", "HTML code");
 define("L_FT_FORMATTING_PLAIN", "Plain text"); 
 define("L_POSTDATE", "Post date");
-define("L_POSTED_BY", "Author");
-define("L_E_POSTED_BY","Author's e-mail"); 
-define("L_PUBLISH_DATE", "Publish date");
+define("L_POSTED_BY", "Posted by");
+define("L_E_POSTED_BY","Posted by e-mail"); 
+define("L_PUBLISH_DATE", "Date Posted");
 define("L_EXPIRY_DATE", "Expiry date");
-define("L_CATEGORY", "Category");
+define("L_CATEGORY", "Category/Selector");
 define("L_STATUS_CODE", "News status");
 define("L_LANGUAGE_CODE", "Language");
 define("L_CP_CODE", "Encoding");
 define("L_LINK_ONLY", "External news");
-define("L_HL_HREF", "Related URL");
+define("L_HL_HREF", "Resource URL");
 define("L_HTML_FORMATTED", "HTML formatted");
 define("L_HIGHLIGHT", "Highlight");
 define("L_IMG_SRC","Image URL"); 
 define("L_IMG_WIDTH","Image width"); 
 define("L_IMG_HEIGHT","Image height");
-define("L_PLACE","Location");
-define("L_SOURCE","Org Name");
+define("L_PLACE","Type of resource");
+define("L_SOURCE","Publisher or Source");
 define("L_SOURCE_HREF","Source URL");
 define("L_REDIRECT","Show on URL");
 define("L_CREATED_BY","Written by");
@@ -178,22 +178,22 @@ define("L_AT","at");
 define("L_EDIT_NOTE","Editor's note"); 
 define("L_IMG_UPLOAD","Image upload"); 
 
-define("L_SOURCE_DESC", "Org Description");
-define("L_SOURCE_ADDRESS", "Street Adress");
-define("L_SOURCE_CITY", "City");
-define("L_SOURCE_PROV", "Province/State");
-define("L_SOURCE_COUNTRY", "Country");
+define("L_SOURCE_DESC", "Publisher description");
+define("L_SOURCE_ADDRESS", "Publisher address");
+define("L_SOURCE_CITY", "Publisher city");
+define("L_SOURCE_PROV", "Publisher province");
+define("L_SOURCE_COUNTRY", "Publisher country");
 define("L_TIME", "Time");
-define("L_CON_NAME", "Contact Name");
-define("L_CON_EMAIL", "Contact E-mail");
-define("L_CON_PHONE", "Contact phone");
-define("L_CON_FAX", "Contact FAX");
+define("L_CON_NAME", "Distributor");
+define("L_CON_EMAIL", "Distributor e-mail");
+define("L_CON_PHONE", "Distributor phone");
+define("L_CON_FAX", "Distributor fax");
 define("L_LOC_NAME", "Location Name");
-define("L_LOC_ADDRESS", "Location Street Address");
-define("L_LOC_CITY", "Location City");
-define("L_LOC_PROV", "Location Province/State");
-define("L_LOC_COUNTRY", "Location Country");
-define("L_START_DATE", "Start Date");
+define("L_LOC_ADDRESS", "Author");
+define("L_LOC_CITY", "Edition");
+define("L_LOC_PROV", "Editor");
+define("L_LOC_COUNTRY", "Attachment file type");
+define("L_START_DATE", "Date of Publication");
 define("L_END_DATE", "End Date");
 
 # aa toolkit specific labels
@@ -580,7 +580,7 @@ $l_month = array( 1 => 'January', 'February', 'March', 'April', 'May', 'June',
 
 /*
 $Log$
-Revision 1.2  2000/10/11 20:18:28  honzam
+Revision 1.1  2000/10/11 20:18:29  honzam
 Upadted database structure and language files for web.net's extended item table
 
 Revision 1.1  2000/10/10 18:28:00  honzam
