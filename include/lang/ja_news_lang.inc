@@ -1,6 +1,6 @@
 <?php
 # $Id$
-# Language: DE
+# Language: JA
 # This file was automatically created by the Mini GetText environment
 # on 25.9.2002 12:57
 
@@ -9,10 +9,7 @@
 # Before each message the places where it was used are noted.
 # Look there if you are not sure how to translate it.
 
-$mgettext_lang = "de";
-
-# Unused messages
-# End of unused messages
+$mgettext_lang = "ja";
 
 # /raid/www/htdocs/work.ecn.cz/aa_jakub/include/menu.php3, row 191
 $_m["Wizard"]
