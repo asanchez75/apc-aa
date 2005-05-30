@@ -1,3 +1,14 @@
+  /*--------------------------------------:noTabs=true:tabSize=2:indentSize=2:--
+    --  CSS plugin example CSS file.  This file is used by full_example.js
+    --  when the CSS plugin is included in an auto-generated example.
+    --  @TODO Make this CSS more useful.
+    --
+    --  $HeadURL: http://svn.xinha.python-hosting.com/trunk/examples/custom.css $
+    --  $LastChangedDate: 2005-02-19 17:10:03 +1300 (Sat, 19 Feb 2005) $
+    --  $LastChangedRevision: 14 $
+    --  $LastChangedBy: gogo $
+    --------------------------------------------------------------------------*/
+
 body { background-color: #234; color: #dd8; font-family: tahoma; font-size: 12px; }
 
 a:link, a:visited { color: #8cf; }
