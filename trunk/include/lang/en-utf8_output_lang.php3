@@ -1,6 +1,6 @@
 <?php
 # $Id$
-# Language: DE
+# Language: EN-UTF8
 # This file was created automatically by the Mini GetText environment
 # on 23.6.2005 17:27
 
@@ -8,7 +8,7 @@
 
 # Before each message there are links to program code where it was used.
 
-$mgettext_lang = "de";
+$mgettext_lang = "en-utf8";
 
 # Unused messages
 # End of unused messages
@@ -51,15 +51,15 @@ $_m["All categories"]
 
 # include/discussion.php3, row 135, 180
 $_m["Show selected"]
- = "Zeige ausgewählte";
+ = "";
 
 # include/discussion.php3, row 136, 182
 $_m["Show all"]
- = "Zeige alle";
+ = "";
 
 # include/discussion.php3, row 138, 184
 $_m["Add new"]
- = "Hinzufügen";
+ = "";
 
 # include/discussion.php3, row 144
 $_m["Alias for subject of the discussion comment"]
@@ -117,17 +117,13 @@ $_m["Alias for item ID<br>\n"
 $_m["Alias for link to text of the discussion comment<br>\n"
    ."                             <i>Usage: </i>in HTML code for index view of the comment<br>\n"
    ."                             <i>Example: </i>&lt;a href=_#URL_BODY>_#SUBJECT#&lt;/a>"]
- = "Alias for link to text of the discussion comment<br>\n"
-   ."                             <i>Usage: </i>in HTML-Code for index view of the comment<br>\n"
-   ."                             <i>Example: </i>&lt;a href=_#URL_BODY>_#SUBJECT#&lt;/a>";
+ = "";
 
 # include/discussion.php3, row 158
 $_m["Alias for link to a form<br>\n"
    ."                             <i>Usage: </i>in HTML code for fulltext view of the comment<br>\n"
    ."                             <i>Example: </i>&lt;a href=_#URLREPLY&gt;Reply&lt;/a&gt;"]
- = "Alias for link to a form<br>\n"
-   ."                             <i>Usage: </i>in HTML-Code for fulltext view of the comment<br>\n"
-   ."                             <i>Example: </i>&lt;a href=_#URLREPLY&gt;Reply&lt;/a&gt;";
+ = "";
 
 # include/discussion.php3, row 159
 $_m["Alias for link to discussion<br>\n"
@@ -138,8 +134,7 @@ $_m["Alias for link to discussion<br>\n"
 # include/discussion.php3, row 160
 $_m["Alias for buttons Show all, Show selected, Add new<br>\n"
    ."                             <i>Usage: </i> in the Bottom HTML code"]
- = "Alias for buttons Show all, Show selected, Add new<br>\n"
-   ."                             <i>Usage: </i> in the Bottom HTML-Code";
+ = "";
 
 # include/discussion.php3, row 302
 $_m["3rd parameter filled in DiscussionMailList field"]
@@ -167,7 +162,7 @@ $_m["alias for Item ID"]
 
 # include/item.php3, row 70
 $_m["alias for Short Item ID"]
- = "Alias für kurze Artikel-ID";
+ = "";
 
 # include/item.php3, row 77, 78
 $_m["alias used on admin page index.php3 for itemedit url"]
@@ -259,7 +254,7 @@ $_m["off"]
 
 # include/item.php3, row 1230
 $_m["Back"]
- = "Zurück";
+ = "";
 
 # include/item.php3, row 1231
 $_m["Home"]

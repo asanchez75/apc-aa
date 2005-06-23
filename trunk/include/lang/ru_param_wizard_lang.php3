@@ -1,6 +1,6 @@
 <?php
 # $Id$
-# Language: CZ
+# Language: RU
 # This file was created automatically by the Mini GetText environment
 # on 23.6.2005 17:27
 
@@ -8,7 +8,7 @@
 
 # Before each message there are links to program code where it was used.
 
-$mgettext_lang = "cz";
+$mgettext_lang = "ru";
 
 # Unused messages
 # End of unused messages

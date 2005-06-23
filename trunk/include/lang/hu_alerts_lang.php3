@@ -1,6 +1,6 @@
 <?php
 # $Id$
-# Language: SK
+# Language: HU
 # This file was created automatically by the Mini GetText environment
 # on 23.6.2005 17:26
 
@@ -8,10 +8,8 @@
 
 # Before each message there are links to program code where it was used.
 
-$mgettext_lang = "sk";
+$mgettext_lang = "hu";
 
-# Unused messages
-# End of unused messages
 # modules/alerts/synchro2.php3, row 43
 # modules/alerts/addusers.php3, row 73
 # modules/alerts/cf_common.php3, row 69
