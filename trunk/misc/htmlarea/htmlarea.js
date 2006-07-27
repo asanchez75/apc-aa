@@ -27,18 +27,18 @@
     --     included in the top 10 lines of the file (see the embedded edit mode)
     --
     --  $HeadURL: http://svn.xinha.python-hosting.com/trunk/htmlarea.js $
-    --  $LastChangedDate: 2005-11-07 21:36:41 +1300 (Mon, 07 Nov 2005) $
-    --  $LastChangedRevision: 421 $
-    --  $LastChangedBy: gocher $
+    --  $LastChangedDate$
+    --  $LastChangedRevision$
+    --  $LastChangedBy$
     --------------------------------------------------------------------------*/
 
 HTMLArea.version =
 {
   'Release'   : 'Trunk',
   'Head'      : '$HeadURL: http://svn.xinha.python-hosting.com/trunk/htmlarea.js $'.replace(/^[^:]*: (.*) \$$/, '$1'),
-  'Date'      : '$LastChangedDate: 2005-11-07 21:36:41 +1300 (Mon, 07 Nov 2005) $'.replace(/^[^:]*: ([0-9-]*) ([0-9:]*) ([+0-9]*) \((.*)\) \$/, '$4 $2 $3'),
-  'Revision'  : '$LastChangedRevision: 421 $'.replace(/^[^:]*: (.*) \$$/, '$1'),
-  'RevisionBy': '$LastChangedBy: gocher $'.replace(/^[^:]*: (.*) \$$/, '$1')
+  'Date'      : '$LastChangedDate$'.replace(/^[^:]*: ([0-9-]*) ([0-9:]*) ([+0-9]*) \((.*)\) \$/, '$4 $2 $3'),
+  'Revision'  : '$LastChangedRevision$'.replace(/^[^:]*: (.*) \$$/, '$1'),
+  'RevisionBy': '$LastChangedBy$'.replace(/^[^:]*: (.*) \$$/, '$1')
 };
 
 if (typeof _editor_url == "string") {
