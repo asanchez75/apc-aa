@@ -5,9 +5,9 @@
     --  from full_example-body.html.
     --
     --  $HeadURL: http://svn.xinha.python-hosting.com/trunk/examples/full_example.js $
-    --  $LastChangedDate: 2005-05-10 19:02:00 +1200 (Tue, 10 May 2005) $
-    --  $LastChangedRevision: 142 $
-    --  $LastChangedBy: niko $
+    --  $LastChangedDate$
+    --  $LastChangedRevision$
+    --  $LastChangedBy$
     --------------------------------------------------------------------------*/
 
   var num     = 1;
