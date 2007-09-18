@@ -31,22 +31,34 @@ if (!IsSuperadmin()) {
   exit;
 }
 
+set_time_limit(360);
+
 // ActionApps to synchronize
 $aas = AA_Actionapps::getArray();
+
+if ($_POST['copy']) {
+    $template_slice_defs = $aas[$_POST['template_aa']]->requestSliceDefinitions($sync_slices, true);
+    
+    foreach ($_POST['destination_aa'] as $dest_aa) {
+        foreach ($_POST['sync_slices'] as $slice_name) {
+            $aas[$dest_aa]->importSlice($template_slice_defs[$slice_name]);
+        }
+    }
+}
 
 HtmlPageBegin();   // Print HTML start page tags (html begin, encoding, style sheet, but no title)
 FrmJavascriptFile( 'javascript/aajslib.php3?sess_name='.$sess->classname .'&sess_id='.$sess->id );
 
 ?>
-<TITLE><?php echo _m("Central - Synchronize ActionApps (2/3) - Slices to Compare"); ?></TITLE>
+<TITLE><?php echo _m("Central - Copy Slice (2/2) - Slices to Copy"); ?></TITLE>
 </HEAD>
 <BODY>
 <?php
 $useOnLoad = true;
 require_once AA_INC_PATH."menu.php3";
-showMenu($aamenus, "central", "synchronize");
+showMenu($aamenus, "central", "copyslice");
 
-echo "<H1><B>" . _m("Central - Synchronize ActionApps (2/3) - Slices to Compare") . "</B></H1>";
+echo "<H1><B>" . _m("Central - Copy Slice (2/2) - Slices to Copy") . "</B></H1>";
 PrintArray($err);
 echo $Msg;
 
@@ -55,38 +67,30 @@ $aas_array = array();
 foreach ( $aas as $k => $aa ) {
     $aas_array[$k] = $aa->getName();
 }
-
 // Template slice - grab from remote AA
-$tmplate_slices = $aas[$_POST['template_aa']]->requestSlices();
-
-// Compared slice - grab from remote AA
-$cmp_slices = $aas[$_POST['comparation_aa']]->requestSlices();
+$tmp_slices = $aas[$_POST['template_aa']]->requestSlices();
 
 // in synchronization we are working with !!names!! not ids
-$comparation_slices[0] = _m('do not compare');
-
-foreach ($cmp_slices as $sid => $name) {
-    $comparation_slices[$name] = $name;
+foreach ($tmp_slices as $sid => $name) {
+    $template_slices[$name] = $name;
 }
 
-$form_buttons = array("compare"      => array( "type"      => "submit",
-                                               "value"     => _m("Compare"),
-                                               "accesskey" => "C"),
-                      "template_aa"     => array( "value"     =>  $_POST['template_aa']),
-                      "comparation_aa"  => array( "value"     =>  $_POST['comparation_aa'])
+
+$form_buttons = array("copy"      => array( "type"      => "submit",
+                                            "value"     => _m("Copy"),
+                                            "accesskey" => "C"),
+                      "template_aa"     => array( "value"     =>  $_POST['template_aa'])
                      );
 
 ?>
-<form name=f method=post action="<?php echo $sess->url(self_base() ."synchronize3.php") ?>">
+<form name=f method=post action="<?php echo $sess->url(self_base() ."copyslice2.php") ?>">
 <?php
 
 FrmTabCaption('', '','', $form_buttons);
 FrmStaticText(_m('Template ActionApps'), $aas[$_POST['template_aa']]->getName());
-FrmTabSeparator(_m('Slice Mapping'));
-FrmStaticText( $aas[$_POST['template_aa']]->getName(), $aas[$_POST['comparation_aa']]->getName());
-foreach($tmplate_slices as $name) {
-    FrmInputSelect('sync_slices['.htmlspecialchars($name).']', $name, $comparation_slices, $_POST['sync_slices'], true);
-}
+FrmTabSeparator(_m('Slices to Copy from %1', array($aas[$_POST['template_aa']]->getName())));
+FrmInputMultiChBox('sync_slices[]', $name, $template_slices, $_POST['sync_slices'], true, '', '', 1);
+FrmInputMultiSelect('destination_aa[]', _m('Destination AAs'), $aas_array, $_POST['destination_aa'], 20, false, true, _m('ActionApps installation to update'));
 FrmTabEnd($form_buttons, $sess, $slice_id);
 ?>
 </FORM>
