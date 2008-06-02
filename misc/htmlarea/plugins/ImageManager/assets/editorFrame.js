@@ -1,7 +1,7 @@
 /**
  * Javascript used by the editorFrame.php, it basically initializes the frame.
- * @author $Author$
- * @version $Id$
+ * @author $Author:ray $
+ * @version $Id:editorFrame.js 677 2007-01-19 22:24:36Z ray $
  * @package ImageManager
  */
 
@@ -93,7 +93,6 @@ init = function()
 	jg_doc.setColor("#000000"); // black
 
 	initEditor();
-}
+};
 
 addEvent(window, 'load', init);
-
