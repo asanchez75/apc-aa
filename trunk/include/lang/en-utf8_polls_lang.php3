@@ -1,6 +1,6 @@
 <?php
-// $Id$
-// Language: EN
+// $Id: xmgettext.php3 2291 2006-07-27 15:11:49Z honzam $
+// Language: EN-UTF8
 // This file was created automatically by the Mini GetText environment
 // on 5.9.2008 16:31
 
@@ -8,7 +8,7 @@
 
 // Before each message there are links to program code where it was used.
 
-$mgettext_lang = "en";
+$mgettext_lang = "en-utf8";
 
 // modules/polls/index.php3, row 41
 $_m["You do not have permission to manage Polls"]
