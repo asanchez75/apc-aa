@@ -5,7 +5,7 @@
 * Copyright (c) 1998-2000 NetUSE AG
 *                    Boris Erdmann, Kristian Koehntopp
 *
-* $Id$
+* $Id: db_mysqli.class.php,v 1.6 2004/08/12 15:51:10 georges Exp $
 *
 */
 
